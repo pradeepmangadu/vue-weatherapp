@@ -11,7 +11,7 @@ export const eventBus = new Vue();
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyAkSLLF8r0s-5agohii5xz_nHJ2vwK8YyU",
+    key: [APIKEY],
   },
 });
 

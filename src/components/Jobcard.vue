@@ -24,7 +24,7 @@
           </div>
         </b-card-text>
         <template v-slot:footer>
-          <em> Min : {{ data.Min }}° Max: {{ data.Max }}° </em>
+          <em>Min : {{ data.Min }}° Max: {{ data.Max }}°</em>
         </template>
       </b-card>
     </b-row>
@@ -44,8 +44,8 @@
           />
         </GmapMap>
       </div>
-      <b-card style="max-width:20rem" class="m-2" :header="country"
-        ><b-card-text>
+      <b-card style="max-width:20rem" class="m-2" :header="country">
+        <b-card-text>
           <label class="ml-2 mr-2">Humidity :{{ humidity }}</label>
           <label class="ml-2 mr-2">Pressure : {{ pressure }}</label>
           <h3>Wind: {{ wind }}</h3>
@@ -72,7 +72,7 @@ export default {
       place: "",
       center: {
         lat: "",
-        lng: "",
+        lng: ""
       },
       list: [
         {
@@ -81,15 +81,15 @@ export default {
           weather: "",
           Max: "",
           Min: "",
-          icon: "",
-        },
+          icon: ""
+        }
       ],
       datedata: [
         {
           date: "",
-          day: "",
-        },
-      ],
+          day: ""
+        }
+      ]
     };
   },
   methods: {
@@ -104,7 +104,7 @@ export default {
       }
       axios
         .get(this.url)
-        .then((response) => {
+        .then(response => {
           console.log(response);
           this.show = true;
           this.place = response.data.city.name;
@@ -127,7 +127,7 @@ export default {
               if (response.data.list[j].dt_txt.includes(fdate)) {
                 fweather = response.data.list[j].weather[0].main;
                 ficon =
-                  "http://openweathermap.org/img/wn/" +
+                  "https://openweathermap.org/img/wn/" +
                   response.data.list[j].weather[0].icon +
                   "@2x.png";
                 fmin = response.data.list[j].main.temp_min;
@@ -140,24 +140,24 @@ export default {
               weather: fweather,
               Max: fmax,
               Min: fmin,
-              icon: ficon,
+              icon: ficon
             });
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
-    },
+    }
   },
   created() {
-    eventBus.$on("search", (data) => {
+    eventBus.$on("search", data => {
       this.url =
-        "http://api.openweathermap.org/data/2.5/forecast?zip=" +
+        "https://api.openweathermap.org/data/2.5/forecast?zip=" +
         data +
-        ",jp&units=metric&appid=1b1594ef7c765e1043e4f5fce5781b1d";
+        ",jp&units=metric&appid=[APIKEY]";
       this.getWeather();
     });
-  },
+  }
 };
 </script>
 
